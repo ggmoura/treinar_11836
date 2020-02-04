@@ -5,14 +5,20 @@ import br.com.bancointer.model.Cliente;
 public class Conta {
 
 	private Double saldo;
-	public Integer numero;
-	public Integer agencia;
-	public Cliente cliente;
-	public Double limiteCredito;
+	private Integer numero;
+	private Integer agencia;
+	private Cliente cliente;
+
+	public Conta(Double saldo) {
+		// this.saldo = 0d;
+		// this.limiteCredito = 0d;
+		this();// em vez de copiar o codigo chamamos o this.conta
+		this.depositar(saldo);
+	}
 
 	public Conta() {
 		saldo = 0d;
-		limiteCredito = 0d;
+
 	}
 
 	public void depositar(Double valor) {
@@ -20,7 +26,39 @@ public class Conta {
 
 	}
 
+	public Double getSaldo() {
+		return saldo;
+	}
+
+	public void setSaldo(Double saldo) {
+		this.saldo = saldo;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Integer numero) {
+		this.numero = numero;
+	}
+
+	public Integer getAgencia() {
+		return agencia;
+	}
+
+	public void setAgencia(Integer agencia) {
+		this.agencia = agencia;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
 	public Double recuperarSaldo() {
-		return saldo + limiteCredito;
+		return saldo;
 	}
 }
