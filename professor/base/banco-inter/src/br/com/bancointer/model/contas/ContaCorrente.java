@@ -32,14 +32,20 @@ public class ContaCorrente extends Conta implements IContaPagavel {
 
 	@Override
 	public void saque(Double ValorSaque) {
-		if (saldo > (ValorSaque + 1)) {
-			this.saldo -= (ValorSaque + 1);
+		this.saque(ValorSaque, Boolean.TRUE);
 		}
-	}
+	
+	private void saque(Double ValorSaque, Boolean cobrarSaque) {
+		Double incremento = cobrarSaque ? 1d : 0d;
+		if (getSaldo() > (ValorSaque + incremento)) {
+			this.saldo -= (ValorSaque + incremento);
+		}	
+	};
+	
 
 	@Override
 	public void pagar() {
-		saque(taxaManutencao);
+		saque(taxaManutencao, Boolean.FALSE);
 	}
 
 }
