@@ -16,6 +16,15 @@ public class TelaBancoInter {
 				+ "3 - Depositar\n\t"
 				+ "\n=> ";
 	}
+	
+	public String menuTipoConta() {
+		return "Inforte o tipo de Conta\n\t"
+				+ "1 - Conta Corrente\n\t"
+				+ "2 - Conta Investimento\n\t"
+				+ "3 - Conta Poupança\n\t"
+				+ "4 - Conta Salario\n\t"
+				+ "\n=> "; 
+	}
 
 	public void iniciar() {
 		Integer opcao;
@@ -25,7 +34,7 @@ public class TelaBancoInter {
 			opcao = teclado.nextInt();
 			switch (opcao) {
 			case 1:
-				c = criarConta();
+				opcaoConta();
 				break;
 			case 2:
 				exibirSaldo(c);
@@ -43,10 +52,10 @@ public class TelaBancoInter {
 	private Conta criarConta() {
 		Conta batata = new Conta();
 		System.out.print("Informe o numero da conta: ");
-		Integer numeroConta = teclado.nextInt();
+		Integer numeroConta = teclado.nextInt();		
 		batata.setNumero(numeroConta);
 		System.out.print("Informe o numero da agencia: ");
-		batata.setAgencia(numeroConta);
+		batata.setAgencia(teclado.nextInt());
 		System.out.print("Informe o saldo da conta: ");
 		batata.depositar(teclado.nextDouble());
 		return batata;
@@ -66,5 +75,28 @@ public class TelaBancoInter {
 		conta.depositar(valor);
 	}
 
-}
+	private void opcaoConta() {
+		System.out.println(menuTipoConta());
+		int opcao = teclado.nextInt();
+		switch (opcao) {
 
+		case 1:
+			System.out.println("Criando Conta Corrente");
+			//criarConta();
+			break;
+		case 2:
+			System.out.println("Criando Conta Investimento");
+			//criarConta();
+			break;
+		case 3:
+			System.out.println("Criando Conta Poupança");
+			//criarConta();
+			break;
+		case 4:
+			System.out.println("Criando Conta Salario");
+			//criarConta();
+			break;
+		}
+		criarConta();
+	}
+}

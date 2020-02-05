@@ -5,33 +5,25 @@ import br.com.bancointer.model.Cliente;
 public class Conta {
 
 	private Double saldo;
+	private Double limiteCredito;
 	private Integer numero;
 	private Integer agencia;
 	private Cliente cliente;
-
-	public Conta(Double saldo) {
-		this();
-		depositar(saldo);
-	}
-
-	public Conta() {
-		saldo = 0d;
-	}
-
-	public void depositar(Double valor) {
-		saldo += valor;
-	}
-
-	public Double recuperarSaldo() {
-		return saldo;
-	}
-
+	
 	public Double getSaldo() {
 		return saldo;
 	}
 
 	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
+	}
+
+	public Double getLimiteCredito() {
+		return limiteCredito;
+	}
+
+	public void setLimiteCredito(Double limiteCredito) {
+		this.limiteCredito = limiteCredito;
 	}
 
 	public Integer getNumero() {
@@ -56,6 +48,19 @@ public class Conta {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Conta() {
+		saldo = 0d;
+		limiteCredito = 0d;
+	}
+
+	public void depositar(Double valor) {
+		saldo += valor;
+	}
+	
+	public Double recuperarSaldo() {
+		return saldo + limiteCredito;
 	}
 
 }
