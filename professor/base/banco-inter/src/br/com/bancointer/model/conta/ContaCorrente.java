@@ -10,8 +10,13 @@ public class ContaCorrente extends Conta implements IContaPagavel {
 	
 	@Override
 	public void sacar(Double valor) {
-		if ((saldo + limiteCredito) >= (valor + 1)) {
-			this.saldo -= (valor + 1);
+		this.sacar(valor, Boolean.TRUE);
+	}
+	
+	private void sacar(Double valor, Boolean cobrarSaque) {
+		Double incremento = cobrarSaque ? 1.0 : 0.0;
+		if (recuperarSaldo() >= (valor + incremento)) {
+			this.saldo -= (valor + incremento);
 		}
 	}
 	
@@ -40,7 +45,7 @@ public class ContaCorrente extends Conta implements IContaPagavel {
 
 	@Override
 	public void pagar() {
-		sacar(taxaManutencao);
+		sacar(taxaManutencao, Boolean.FALSE);
 	}
 	
 }
