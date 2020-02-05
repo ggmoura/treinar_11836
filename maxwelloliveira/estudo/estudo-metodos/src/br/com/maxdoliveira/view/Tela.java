@@ -9,6 +9,7 @@ public class Tela {
 	Scanner teclado = new Scanner(System.in);
 	Integer numUm; 
 	Integer numDois;
+	Integer numTres;
 	Integer operador;
 
 	public String menuOp() {
