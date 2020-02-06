@@ -4,6 +4,15 @@ import br.com.bancointer.model.Cliente;
 
 public abstract class Conta {
 
+	public static final Integer HORA_ABERTURA;
+	
+	static {
+		contador = 0;
+		HORA_ABERTURA = 10;
+	}
+
+	private static Integer contador;
+	private final Integer id;
 	protected Double saldo;
 	private Integer numero;
 	private Integer agencia;
@@ -15,6 +24,7 @@ public abstract class Conta {
 	}
 
 	public Conta() {
+		id = ++contador;
 		saldo = 0d;
 	}
 	
@@ -25,7 +35,6 @@ public abstract class Conta {
 	}
 
 	public Double recuperarSaldo() {
-		System.out.println("log de acesso - alguem recuperou saldo");
 		return saldo;
 	}
 
@@ -59,6 +68,10 @@ public abstract class Conta {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	public Integer getId() {
+		return id;
 	}
 
 }

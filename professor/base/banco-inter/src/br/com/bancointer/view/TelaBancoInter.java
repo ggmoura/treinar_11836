@@ -2,17 +2,21 @@ package br.com.bancointer.view;
 
 import java.util.Scanner;
 
+import br.com.bancointer.data.InterDatabase;
 import br.com.bancointer.model.conta.ContaCorrente;
 import br.com.bancointer.model.conta.ContaInvestimento;
 import br.com.bancointer.model.conta.ContaPoupanca;
 import br.com.bancointer.model.core.Conta;
-import br.com.bancointer.model.core.IContaPagavel;
-import br.com.bancointer.model.core.IContaRentavel;
 
 public class TelaBancoInter {
 
-	Scanner teclado = new Scanner(System.in);
-
+	private Scanner teclado = new Scanner(System.in);
+	private InterDatabase database;
+	
+	public TelaBancoInter() {
+		database = InterDatabase.getInstance();
+	}
+	
 	public String recuperarMenu() {
 		return "Informe\n\t"
 				+ "0 - Sair\n\t"
@@ -29,33 +33,33 @@ public class TelaBancoInter {
 
 	public void iniciar() {
 		Integer opcao;
-		Conta c = null;
 		do {
 			System.out.print(recuperarMenu());
 			opcao = teclado.nextInt();
 			switch (opcao) {
 			case 1:
-				c = criarConta();
+				menuCriarConta();
 				break;
 			case 2:
-				exibirSaldo(c);
+				exibirSaldo();
 				break;
 			case 3:
-				depositar(c);
+				depositar();
+				break;
 			case 4:
-				sacar(c);
+				sacar();
 				break;
 			case 5:
-				exibirLimiteCredito(c);
+				exibirLimiteCredito();
 				break;
 			case 6:
-				obterRendimento(c);
+				obterRendimento();
 				break;
 			case 7:
-				realizarPagamento(c);
+				realizarPagamento();
 				break;
 			case 8:
-				cadastrarTaxaRendimento(c);
+				cadastrarTaxaRendimento();
 				break;
 			default:
 				break;
@@ -64,25 +68,22 @@ public class TelaBancoInter {
 		} while (!opcao.equals(0));
 	}
 
-	private void cadastrarTaxaRendimento(Conta c) {
+	private void cadastrarTaxaRendimento() {
 		System.out.print("Informe a taxa de rendimento: ");
 		ContaPoupanca.setTaxaRendimento(teclado.nextDouble());
 		System.out.println("Taxa cadastrada com sucesso!");
 	}
 
-	private void realizarPagamento(Conta c) {
-		if (c instanceof IContaPagavel) {
-			((IContaPagavel)c).pagar();
-		}
+	private void realizarPagamento() {
+		database.realizarPagamento();
 	}
 
-	private void obterRendimento(Conta c) {
-		if (c instanceof IContaRentavel) {
-			((IContaRentavel)c).render();
-		}
+	private void obterRendimento() {
+		database.obterRendimento();
 	}
 
-	private void exibirLimiteCredito(Conta c) {
+	private void exibirLimiteCredito() {
+		Conta c = recuperarConta();
 		if (c instanceof ContaCorrente) {
 			System.out.println("Limite de crédito: " + ((ContaCorrente)c).getLimiteCredito());
 		} else {
@@ -90,7 +91,8 @@ public class TelaBancoInter {
 		}
 	}
 
-	private void sacar(Conta c) {
+	private void sacar() {
+		Conta c = recuperarConta();
 		System.out.print("Informe o valor a ser sacado: ");
 		Double valor = teclado.nextDouble();
 		c.sacar(valor);
@@ -116,28 +118,27 @@ public class TelaBancoInter {
 		conta.depositar(teclado.nextDouble());
 	}
 	
-	private Conta criarConta() {
-		System.out.print(recuperarMenuCriarConta());
-		Integer opcao = teclado.nextInt();
-		Conta c = null;
-		switch (opcao) {
-		case 1:
-			c = criarContaCorrente();
-			break;
-		case 2:
-			c = criarContaPoupanca();
-			break;
-		case 3:
-			c = criarContaSalario();
-			break;
-		case 4:
-			c = criarContaInvestimento();
-			break;
-		default:
-			break;
-		}
-		return c;
-		
+	private void menuCriarConta() {
+			System.out.print(recuperarMenuCriarConta());
+			Integer opcao = teclado.nextInt();
+			Conta c = null;
+			switch (opcao) {
+			case 1:
+				c = criarContaCorrente();
+				break;
+			case 2:
+				c = criarContaPoupanca();
+				break;
+			case 3:
+				c = criarContaSalario();
+				break;
+			case 4:
+				c = criarContaInvestimento();
+				break;
+			default:
+				break;
+			}
+			database.adicionarConta(c);
 	}
 
 	private Conta criarContaCorrente() {
@@ -172,7 +173,8 @@ public class TelaBancoInter {
 		return c;
 	}
 
-	private void exibirSaldo(Conta conta) {
+	private void exibirSaldo() {
+		Conta conta = recuperarConta();
 		if (conta != null) {
 			System.out.println("Saldo atual: " + conta.recuperarSaldo());
 		} else {
@@ -180,10 +182,17 @@ public class TelaBancoInter {
 		}
 	}
 
-	private void depositar(Conta conta) {
+	private void depositar() {
+		Conta conta = recuperarConta();
 		System.out.print("Informe o valor a ser depositado: ");
 		Double valor = teclado.nextDouble();
 		conta.depositar(valor);
+	}
+	
+	private Conta recuperarConta() {
+		System.out.print("Informe o numero da conta: ");
+		Integer numeroConta = teclado.nextInt();
+		return database.recuperarConta(numeroConta);
 	}
 
 }

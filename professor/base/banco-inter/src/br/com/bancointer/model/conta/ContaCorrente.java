@@ -10,14 +10,19 @@ public class ContaCorrente extends Conta implements IContaPagavel {
 	
 	@Override
 	public void sacar(Double valor) {
-		this.sacar(valor, Boolean.TRUE);
+		this.sacar(valor, Boolean.TRUE, Boolean.TRUE);
 	}
 	
-	private void sacar(Double valor, Boolean cobrarSaque) {
+	private void sacar(Double valor, Boolean cobrarSaque, Boolean validarLimite) {
 		Double incremento = cobrarSaque ? 1.0 : 0.0;
-		if (recuperarSaldo() >= (valor + incremento)) {
-			this.saldo -= (valor + incremento);
+		if (validarLimite) {
+			if (recuperarSaldo() >= (valor + incremento)) {
+				this.saldo -= (valor + incremento);
+			}
+		} else {
+			this.saldo -= valor;
 		}
+			
 	}
 	
 	@Override
@@ -45,7 +50,7 @@ public class ContaCorrente extends Conta implements IContaPagavel {
 
 	@Override
 	public void pagar() {
-		sacar(taxaManutencao, Boolean.FALSE);
+		sacar(taxaManutencao, Boolean.FALSE, Boolean.FALSE);
 	}
 	
 }
