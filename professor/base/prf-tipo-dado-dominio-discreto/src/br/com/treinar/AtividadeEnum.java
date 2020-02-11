@@ -1,25 +1,26 @@
 package br.com.treinar;
 
+import java.util.Scanner;
+
 public class AtividadeEnum {
 
 	public static void main(String[] args) {
-		
-		DiaSemana dom = DiaSemana.DOMINGO;
-		
-		System.out.println(dom);
-		
-		DiaSemana[] dias = DiaSemana.values();
-		
-		for (DiaSemana diaSemana : dias) {
-			System.out.println(diaSemana);
-		}
-		
-		DiaSemana sabado = DiaSemana.valueOf("SABADO");
+		Scanner teclado = new Scanner(System.in);
 
-		System.out.println(sabado);
-		System.out.println(sabado.name());
-		System.out.println(DiaSemana.TERCA.ordinal());
+		System.out.print("Informe o dia da semana 0 ~ 6: ");
+		AtividadeEnum minhaClasse = new AtividadeEnum();
+		DiaSemana dia = minhaClasse.recuperarDia(teclado.nextInt());
+
+		teclado.close();
 		
+		DiaSemana.DOMINGO.ehDiaUtil(10);
+	
+		System.out.println(dia.ehDiaUtil(10));
+	
+	}
+	
+	public DiaSemana recuperarDia(Integer dia) {
+		return DiaSemana.values()[dia];
 	}
 	
 }

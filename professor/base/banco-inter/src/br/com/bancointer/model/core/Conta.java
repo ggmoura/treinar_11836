@@ -1,11 +1,12 @@
 package br.com.bancointer.model.core;
 
 import br.com.bancointer.model.Cliente;
+import br.com.bancointer.model.conta.Transferencia;
 
 public abstract class Conta {
 
 	public static final Integer HORA_ABERTURA;
-	
+
 	static {
 		contador = 0;
 		HORA_ABERTURA = 10;
@@ -17,6 +18,7 @@ public abstract class Conta {
 	private Integer numero;
 	private Integer agencia;
 	private Cliente cliente;
+	private Transferencia[] transferencias;
 
 	public Conta(Double saldo) {
 		this();
@@ -27,8 +29,8 @@ public abstract class Conta {
 		id = ++contador;
 		saldo = 0d;
 	}
-	
-	public abstract void sacar(Double valor) ;
+
+	public abstract void sacar(Double valor);
 
 	public void depositar(Double valor) {
 		saldo += valor;
@@ -69,9 +71,17 @@ public abstract class Conta {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
+
 	public Integer getId() {
 		return id;
+	}
+
+	public Transferencia[] getTransferencias() {
+		return transferencias;
+	}
+
+	public void setTransferencias(Transferencia[] transferencias) {
+		this.transferencias = transferencias;
 	}
 
 }
