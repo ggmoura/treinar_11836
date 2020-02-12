@@ -32,12 +32,10 @@ public class ContaInvestimento extends Conta implements IContaPagavel, IContaRen
 		this.taxaRendimento = taxaRendimento;
 	}
 
-	@Override
 	public void render() {
 		depositar(saldo * taxaRendimento);
 	}
 
-	@Override
 	public void pagar() {
 		sacar(taxaManutencao);
 	}

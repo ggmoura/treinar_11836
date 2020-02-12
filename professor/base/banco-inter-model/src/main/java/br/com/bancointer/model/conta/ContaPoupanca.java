@@ -30,7 +30,6 @@ public class ContaPoupanca extends Conta implements IContaRentavel {
 		ContaPoupanca.taxaRendimento = taxaRendimento;
 	}
 
-	@Override
 	public void render() {
 		depositar(saldo * taxaRendimento);
 	}

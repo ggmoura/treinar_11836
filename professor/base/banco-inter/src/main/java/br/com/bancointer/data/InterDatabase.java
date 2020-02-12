@@ -26,7 +26,7 @@ public class InterDatabase {
 
 	public void adicionarConta(Conta conta) {
 		if (index < 10) {
-			contas[index] = conta;
+			contas[index++] = conta;
 		}
 	}
 
@@ -58,6 +58,10 @@ public class InterDatabase {
 				((IContaRentavel)conta).render();
 			}
 		}
+	}
+	
+	public Conta[] recuperarContas() {
+		return contas;
 	}
 
 }
