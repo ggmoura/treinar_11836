@@ -2,6 +2,9 @@ package br.com.bancointer.view;
 
 import java.util.Scanner;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import br.com.bancointer.data.InterDatabase;
 import br.com.bancointer.model.conta.ContaCorrente;
 import br.com.bancointer.model.conta.ContaInvestimento;
@@ -61,11 +64,19 @@ public class TelaBancoInter {
 			case 8:
 				cadastrarTaxaRendimento();
 				break;
+			case 0:
+				imprimirContas();
+				break;
 			default:
 				break;
 
 			}
 		} while (!opcao.equals(0));
+	}
+
+	private void imprimirContas() {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		System.out.println(gson.toJson(database.recuperarContas()));
 	}
 
 	private void cadastrarTaxaRendimento() {

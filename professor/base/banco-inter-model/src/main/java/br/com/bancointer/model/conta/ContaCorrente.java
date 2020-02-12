@@ -48,7 +48,6 @@ public class ContaCorrente extends Conta implements IContaPagavel {
 		this.taxaManutencao = taxaManutencao;
 	}
 
-	@Override
 	public void pagar() {
 		sacar(taxaManutencao, Boolean.FALSE, Boolean.FALSE);
 	}
