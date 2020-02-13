@@ -1,5 +1,8 @@
 package br.com.bancointer.data;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import br.com.bancointer.model.core.Conta;
 import br.com.bancointer.model.core.IContaPagavel;
 import br.com.bancointer.model.core.IContaRentavel;
@@ -7,8 +10,7 @@ import br.com.bancointer.model.core.IContaRentavel;
 public class InterDatabase {
 
 	private static InterDatabase instance;
-	private Conta[] contas;
-	private Integer index;
+	private Set<Conta> contas;
 
 	static {
 		instance = new InterDatabase();
@@ -16,8 +18,7 @@ public class InterDatabase {
 
 	private InterDatabase() {
 		super();
-		index = 0;
-		contas = new Conta[10];
+		contas = new HashSet<>();
 	}
 
 	public static InterDatabase getInstance() {
@@ -25,42 +26,26 @@ public class InterDatabase {
 	}
 
 	public void adicionarConta(Conta conta) {
-		if (index < 10) {
-			contas[index++] = conta;
-		}
+		contas.add(conta);
 	}
 
 	public Conta recuperarConta(Integer numeroConta) {
-		Conta solicitada = null;
-		for (int i = 0; i < contas.length; i++) {
-			Conta conta = contas[i];
-			if (conta != null && conta.getNumero().equals(numeroConta)) {
-				solicitada = conta;
-				break;
-			}
-		}
-		return solicitada;
+		
+		return contas.stream().filter(conta -> conta.getId().equals(numeroConta)).findFirst().get();
+
 	}
 
 	//TODO - criar rotina de um em um minuto para fazer isso
 	public void realizarPagamento() {
-		for (Conta conta : contas) {
-			if (conta != null && conta instanceof IContaPagavel) {
-				((IContaPagavel)conta).pagar();
-			}
-		}
+		contas.forEach(conta -> ((IContaPagavel)conta).pagar());
 	}
 
 	//TODO - criar rotina de um em um minuto para fazer isso
 	public void obterRendimento() {
-		for (Conta conta : contas) {
-			if (conta != null && conta instanceof IContaRentavel) {
-				((IContaRentavel)conta).render();
-			}
-		}
+		contas.forEach(conta -> ((IContaRentavel)conta).render());
 	}
 	
-	public Conta[] recuperarContas() {
+	public Set<Conta> recuperarContas() {
 		return contas;
 	}
 
