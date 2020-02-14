@@ -10,6 +10,8 @@ import br.com.bancointer.model.conta.ContaCorrente;
 import br.com.bancointer.model.conta.ContaInvestimento;
 import br.com.bancointer.model.conta.ContaPoupanca;
 import br.com.bancointer.model.core.Conta;
+import br.com.bancointer.model.core.LimiteDiarioException;
+import br.com.bancointer.model.core.SaldoInsuficienteException;
 
 public class TelaBancoInter {
 
@@ -106,8 +108,14 @@ public class TelaBancoInter {
 		Conta c = recuperarConta();
 		System.out.print("Informe o valor a ser sacado: ");
 		Double valor = teclado.nextDouble();
-		c.sacar(valor);
-		System.out.println("Saque efetuado com sucesso!");
+		try {
+			c.sacar(valor);
+			System.out.println("Saque efetuado com sucesso!");
+		} catch (SaldoInsuficienteException e) {
+			System.out.println("Saldo insuficiente, você pode sacar o valor de :".concat(e.getSaldoDisponivel().toString()).concat(", contrate um empréstimo!"));
+		} catch (LimiteDiarioException e) {
+			System.out.println("Passa amanhã!");
+		}
 	}
 
 	public String recuperarMenuCriarConta() {

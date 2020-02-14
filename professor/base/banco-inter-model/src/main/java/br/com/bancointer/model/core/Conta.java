@@ -30,7 +30,7 @@ public abstract class Conta {
 		saldo = 0d;
 	}
 
-	public abstract void sacar(Double valor);
+	public abstract void sacar(Double valor) throws SaldoInsuficienteException, LimiteDiarioException;
 
 	public void depositar(Double valor) {
 		saldo += valor;
