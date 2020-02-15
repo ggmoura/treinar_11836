@@ -15,10 +15,10 @@ public class ContaCorrente extends Conta implements IContaPagavel {
 		this.sacar(valor, Boolean.TRUE, Boolean.TRUE);
 	}
 	
-	private void sacar(Double valor, Boolean cobrarSaque, Boolean validarLimite) throws SaldoInsuficienteException, LimiteDiarioException {
+	public void sacar(Double valor, Boolean cobrarSaque, Boolean validarLimite) throws SaldoInsuficienteException, LimiteDiarioException {
 		Double incremento = cobrarSaque ? 1.0 : 0.0;
 		Double saldoAtual = recuperarSaldo();
-		if (valor > saldoAtual * 0.8) {
+		if (valor <= saldoAtual * 0.8) {
 			if (validarLimite) {
 				if (saldoAtual >= (valor + incremento)) {
 					this.saldo -= (valor + incremento);

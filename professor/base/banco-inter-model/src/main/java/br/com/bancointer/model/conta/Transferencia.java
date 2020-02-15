@@ -1,5 +1,7 @@
 package br.com.bancointer.model.conta;
 
+import java.util.Date;
+
 import br.com.bancointer.model.core.Conta;
 
 /**
@@ -12,6 +14,7 @@ public class Transferencia {
 	private Conta destino;
 	private Double valor;
 	private TipoTransferencia tipo;
+	private Date dataRealizacao;
 
 	public Conta getOrigem() {
 		return origem;
@@ -43,6 +46,14 @@ public class Transferencia {
 
 	public void setTipo(TipoTransferencia tipo) {
 		this.tipo = tipo;
+	}
+
+	public Date getDataRealizacao() {
+		return dataRealizacao;
+	}
+
+	public void setDataRealizacao(Date dataRealizacao) {
+		this.dataRealizacao = dataRealizacao;
 	}
 
 }

@@ -1,7 +1,7 @@
 package br.com.bancointer.data;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.bancointer.model.core.Conta;
 import br.com.bancointer.model.core.IContaPagavel;
@@ -10,7 +10,7 @@ import br.com.bancointer.model.core.IContaRentavel;
 public class InterDatabase {
 
 	private static InterDatabase instance;
-	private Set<Conta> contas;
+	private List<Conta> contas;
 
 	static {
 		instance = new InterDatabase();
@@ -18,7 +18,7 @@ public class InterDatabase {
 
 	private InterDatabase() {
 		super();
-		contas = new HashSet<>();
+		contas = new ArrayList<>();
 	}
 
 	public static InterDatabase getInstance() {
@@ -31,7 +31,7 @@ public class InterDatabase {
 
 	public Conta recuperarConta(Integer numeroConta) {
 		
-		return contas.stream().filter(conta -> conta.getId().equals(numeroConta)).findFirst().get();
+		return contas.stream().filter(conta -> conta.getNumero().equals(numeroConta)).findFirst().get();
 
 	}
 
@@ -45,7 +45,7 @@ public class InterDatabase {
 		contas.forEach(conta -> ((IContaRentavel)conta).render());
 	}
 	
-	public Set<Conta> recuperarContas() {
+	public List<Conta> recuperarContas() {
 		return contas;
 	}
 

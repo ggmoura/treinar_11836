@@ -1,5 +1,6 @@
 package br.com.bancointer.view;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 import com.google.gson.Gson;
@@ -9,9 +10,11 @@ import br.com.bancointer.data.InterDatabase;
 import br.com.bancointer.model.conta.ContaCorrente;
 import br.com.bancointer.model.conta.ContaInvestimento;
 import br.com.bancointer.model.conta.ContaPoupanca;
+import br.com.bancointer.model.conta.TipoTransferencia;
 import br.com.bancointer.model.core.Conta;
 import br.com.bancointer.model.core.LimiteDiarioException;
 import br.com.bancointer.model.core.SaldoInsuficienteException;
+import br.com.bancointer.service.InterService;
 
 public class TelaBancoInter {
 
@@ -33,6 +36,7 @@ public class TelaBancoInter {
 				+ "6 - Obter Rendimento\n\t"
 				+ "7 - Realizar Pagamento\n\t"
 				+ "8 - Cadastrar taxa de rendimento\n\t"
+				+ "9 - Efetuar transferência\n\t"
 				+ "\n=> ";
 	}
 
@@ -66,6 +70,12 @@ public class TelaBancoInter {
 			case 8:
 				cadastrarTaxaRendimento();
 				break;
+			case 9:
+				efetuarTransferencia();
+				break;
+			case 10:
+				listarTransferencia();
+				break;
 			case 0:
 				imprimirContas();
 				break;
@@ -74,6 +84,29 @@ public class TelaBancoInter {
 
 			}
 		} while (!opcao.equals(0));
+	}
+
+	private void listarTransferencia() {
+		System.out.println("-----------------------------------------");
+		Conta c = recuperarConta();
+		c.getTransferencias().forEach(t -> {
+			String acao = c.getNumero().equals(t.getOrigem().getNumero()) ? "Efetuada" : "Recebida";
+			System.out.println("Valor: " + t.getValor() + " " + acao);
+		});
+		System.out.println("-----------------------------------------");
+	}
+
+	private void efetuarTransferencia() {
+		System.out.print("Origem: ");
+		Conta origem = recuperarConta();
+		System.out.print("Destino: ");
+		Conta destino = recuperarConta();
+		System.out.print("Informe o valor da transferência: ");
+		Double valor = teclado.nextDouble();
+		System.out.print("Informe o tipo da conta " + Arrays.asList(TipoTransferencia.values()) + ": ");
+		teclado.nextLine();
+		TipoTransferencia tipo = TipoTransferencia.valueOf(teclado.nextLine());
+		InterService.getInstance().efetuarTransferencia(origem, destino, tipo, valor);
 	}
 
 	private void imprimirContas() {

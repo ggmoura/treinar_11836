@@ -1,5 +1,9 @@
 package br.com.bancointer.model.core;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import br.com.bancointer.model.Cliente;
 import br.com.bancointer.model.conta.Transferencia;
 
@@ -8,17 +12,16 @@ public abstract class Conta {
 	public static final Integer HORA_ABERTURA;
 
 	static {
-		contador = 0;
 		HORA_ABERTURA = 10;
 	}
 
-	private static Integer contador;
-	private final Integer id;
+	private Integer id;
 	protected Double saldo;
 	private Integer numero;
 	private Integer agencia;
 	private Cliente cliente;
-	private Transferencia[] transferencias;
+	private List<Transferencia> transferencias;
+	private Date dataAbertura;
 
 	public Conta(Double saldo) {
 		this();
@@ -26,8 +29,8 @@ public abstract class Conta {
 	}
 
 	public Conta() {
-		id = ++contador;
 		saldo = 0d;
+		transferencias = new ArrayList<Transferencia>();
 	}
 
 	public abstract void sacar(Double valor) throws SaldoInsuficienteException, LimiteDiarioException;
@@ -76,12 +79,20 @@ public abstract class Conta {
 		return id;
 	}
 
-	public Transferencia[] getTransferencias() {
+	public List<Transferencia> getTransferencias() {
 		return transferencias;
 	}
 
-	public void setTransferencias(Transferencia[] transferencias) {
+	public void setTransferencias(List<Transferencia> transferencias) {
 		this.transferencias = transferencias;
+	}
+
+	public Date getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
 	}
 
 	@Override
