@@ -33,6 +33,12 @@ public abstract class Conta {
 		transferencias = new ArrayList<Transferencia>();
 	}
 
+	/**
+	 * 
+	 * @param valor - Montante que sera removido da conta
+	 * @throws SaldoInsuficienteException - lancada quando o saldo for menor do que o valor a ser sacado 
+	 * @throws LimiteDiarioException - lancada quando ultrapassar o limite de saque por dia
+	 */
 	public abstract void sacar(Double valor) throws SaldoInsuficienteException, LimiteDiarioException;
 
 	public void depositar(Double valor) {
