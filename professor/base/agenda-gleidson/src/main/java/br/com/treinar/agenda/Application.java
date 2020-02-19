@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package br.com.treinar.jpa.data.jpa;
+package br.com.treinar.agenda;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -24,10 +24,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public class SampleDataJpaApplication {
+public class Application {
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(SampleDataJpaApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
