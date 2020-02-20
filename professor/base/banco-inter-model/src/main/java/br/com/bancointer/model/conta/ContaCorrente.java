@@ -1,10 +1,13 @@
 package br.com.bancointer.model.conta;
 
+import javax.persistence.Entity;
+
 import br.com.bancointer.model.core.Conta;
 import br.com.bancointer.model.core.IContaPagavel;
 import br.com.bancointer.model.core.LimiteDiarioException;
 import br.com.bancointer.model.core.SaldoInsuficienteException;
 
+@Entity
 public class ContaCorrente extends Conta implements IContaPagavel {
 
 	private Double limiteCredito;

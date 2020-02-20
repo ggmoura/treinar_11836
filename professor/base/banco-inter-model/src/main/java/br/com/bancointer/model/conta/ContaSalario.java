@@ -1,9 +1,12 @@
 package br.com.bancointer.model.conta;
 
+import javax.persistence.Entity;
+
 import br.com.bancointer.model.core.Conta;
 
+@Entity
 public class ContaSalario extends Conta {
-
+	
 	private Integer contadorSaque;
 	
 	public ContaSalario() {

@@ -74,8 +74,8 @@ public class InterService {
 				t.setValor(valor);
 				t.setDataRealizacao(new Date());
 
-				origem.getTransferencias().add(t);
-				destino.getTransferencias().add(t);
+//				origem.getTransferencias().add(t);
+//				destino.getTransferencias().add(t);
 			}
 		}, agora.getTime());
 	}

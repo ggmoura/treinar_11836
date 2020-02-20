@@ -1,10 +1,15 @@
 package br.com.bancointer.model.conta;
 
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
 import br.com.bancointer.model.core.Conta;
 import br.com.bancointer.model.core.IContaRentavel;
 
+@Entity
 public class ContaPoupanca extends Conta implements IContaRentavel {
 
+	@Transient
 	private static Double taxaRendimento;
 
 	static {

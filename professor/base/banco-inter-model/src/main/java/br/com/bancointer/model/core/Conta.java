@@ -4,9 +4,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
+
 import br.com.bancointer.model.Cliente;
 import br.com.bancointer.model.conta.Transferencia;
 
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class Conta {
 
 	public static final Integer HORA_ABERTURA;
@@ -15,12 +26,19 @@ public abstract class Conta {
 		HORA_ABERTURA = 10;
 	}
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	protected Double saldo;
 	private Integer numero;
 	private Integer agencia;
+
+	@ManyToOne
 	private Cliente cliente;
+
+	@OneToMany(mappedBy = "origem")
 	private List<Transferencia> transferencias;
+
 	private Date dataAbertura;
 
 	public Conta(Double saldo) {
@@ -36,8 +54,10 @@ public abstract class Conta {
 	/**
 	 * 
 	 * @param valor - Montante que sera removido da conta
-	 * @throws SaldoInsuficienteException - lancada quando o saldo for menor do que o valor a ser sacado 
-	 * @throws LimiteDiarioException - lancada quando ultrapassar o limite de saque por dia
+	 * @throws SaldoInsuficienteException - lancada quando o saldo for menor do que
+	 *                                    o valor a ser sacado
+	 * @throws LimiteDiarioException      - lancada quando ultrapassar o limite de
+	 *                                    saque por dia
 	 */
 	public abstract void sacar(Double valor) throws SaldoInsuficienteException, LimiteDiarioException;
 
@@ -85,6 +105,14 @@ public abstract class Conta {
 		return id;
 	}
 
+	public Date getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public void setDataAbertura(Date dataAbertura) {
+		this.dataAbertura = dataAbertura;
+	}
+
 	public List<Transferencia> getTransferencias() {
 		return transferencias;
 	}
@@ -93,12 +121,8 @@ public abstract class Conta {
 		this.transferencias = transferencias;
 	}
 
-	public Date getDataAbertura() {
-		return dataAbertura;
-	}
-
-	public void setDataAbertura(Date dataAbertura) {
-		this.dataAbertura = dataAbertura;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	@Override
