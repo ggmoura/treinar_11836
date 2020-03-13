@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition>
+		<h:panelGrid columns="2" border="1">
+			<h:outputLabel value="Nome:" />
+			<h:inputText value="#{alunoController.aluno.nome}" required="true" label="Nome" />
+			<h:outputLabel value="CPF:" />
+			<h:inputText value="#{alunoController.aluno.cpf}" required="true" label="CPF">
+				<f:validateLength maximum="11" minimum="11" />
+				<f:validator validatorId="br.com.treinar.CpfValidator"/>
+			</h:inputText>
+			<h:outputLabel value="Telefone:" />
+			<h:inputText value="#{alunoController.aluno.telefone}" label="Telefone" converter="br.com.treinar.TelefoneConverter" />
+			<h:outputLabel value="Matricula: " />
+			<h:inputText value="#{alunoController.aluno.matricula}" />
+			<h:outputLabel value="Data Nascimento: " />
+			<p:calendar value="#{alunoController.aluno.dataNascimento}" yearRange="c-60:c+0" locale="pt" navigator="true" pattern="dd/MM/yyyy" />
+			<h:selectOneMenu required="true" value="#{alunoController.aluno.sexo}" validatorMessage="Um erro ao converter">
+				<f:selectItem noSelectionOption="true" itemValue="Selecione" />
+				<f:selectItems value="#{treinar.sexos}" var="sexo"
+					itemLabel="#{sexo.descricao}" />
+			</h:selectOneMenu>
+			<h:commandButton action="#{alunoController.cadastrarAluno()}" value="Cadastrar" />
+		</h:panelGrid>
+		
+	</ui:composition>
+</html>
