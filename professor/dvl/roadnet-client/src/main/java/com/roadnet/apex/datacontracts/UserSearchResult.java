@@ -1,0 +1,206 @@
+
+package com.roadnet.apex.datacontracts;
+
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Classe Java de UserSearchResult complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="UserSearchResult"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;extension base="{http://roadnet.com/apex/DataContracts/}SearchResult"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="EmailAddress" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="EntityKey" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/&gt;
+ *         &lt;element name="IsDisabled" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/&gt;
+ *         &lt;element name="Name" type="{http://roadnet.com/apex/DataContracts/}PersonName" minOccurs="0"/&gt;
+ *         &lt;element name="UserType_Type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="Version" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "UserSearchResult", propOrder = {
+    "emailAddress",
+    "entityKey",
+    "isDisabled",
+    "name",
+    "userTypeType",
+    "version"
+})
+public class UserSearchResult
+    extends SearchResult
+{
+
+    @XmlElementRef(name = "EmailAddress", namespace = "http://roadnet.com/apex/DataContracts/", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> emailAddress;
+    @XmlElement(name = "EntityKey")
+    protected Long entityKey;
+    @XmlElement(name = "IsDisabled")
+    protected Boolean isDisabled;
+    @XmlElementRef(name = "Name", namespace = "http://roadnet.com/apex/DataContracts/", type = JAXBElement.class, required = false)
+    protected JAXBElement<PersonName> name;
+    @XmlElementRef(name = "UserType_Type", namespace = "http://roadnet.com/apex/DataContracts/", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> userTypeType;
+    @XmlElement(name = "Version")
+    protected Long version;
+
+    /**
+     * Obtém o valor da propriedade emailAddress.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getEmailAddress() {
+        return emailAddress;
+    }
+
+    /**
+     * Define o valor da propriedade emailAddress.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setEmailAddress(JAXBElement<String> value) {
+        this.emailAddress = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade entityKey.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getEntityKey() {
+        return entityKey;
+    }
+
+    /**
+     * Define o valor da propriedade entityKey.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setEntityKey(Long value) {
+        this.entityKey = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade isDisabled.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isIsDisabled() {
+        return isDisabled;
+    }
+
+    /**
+     * Define o valor da propriedade isDisabled.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setIsDisabled(Boolean value) {
+        this.isDisabled = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade name.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link PersonName }{@code >}
+     *     
+     */
+    public JAXBElement<PersonName> getName() {
+        return name;
+    }
+
+    /**
+     * Define o valor da propriedade name.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link PersonName }{@code >}
+     *     
+     */
+    public void setName(JAXBElement<PersonName> value) {
+        this.name = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade userTypeType.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getUserTypeType() {
+        return userTypeType;
+    }
+
+    /**
+     * Define o valor da propriedade userTypeType.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setUserTypeType(JAXBElement<String> value) {
+        this.userTypeType = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade version.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getVersion() {
+        return version;
+    }
+
+    /**
+     * Define o valor da propriedade version.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setVersion(Long value) {
+        this.version = value;
+    }
+
+}

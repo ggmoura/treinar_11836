@@ -1,0 +1,156 @@
+
+package org.datacontract.schemas._2004._07.roadnet_apex_server_services_administration;
+
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlSeeAlso;
+import javax.xml.bind.annotation.XmlType;
+import com.roadnet.apex.datacontracts.AggregateRootEntity;
+
+
+/**
+ * <p>Classe Java de DatabaseServerGroup complex type.
+ * 
+ * <p>O seguinte fragmento do esquema especifica o conteúdo esperado contido dentro desta classe.
+ * 
+ * <pre>
+ * &lt;complexType name="DatabaseServerGroup"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;extension base="{http://roadnet.com/apex/DataContracts/}AggregateRootEntity"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="BackupDirectory" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="Description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="Identifier" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="ServerGroupType_Type" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/extension&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
+ * </pre>
+ * 
+ * 
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "DatabaseServerGroup", propOrder = {
+    "backupDirectory",
+    "description",
+    "identifier",
+    "serverGroupTypeType"
+})
+@XmlSeeAlso({
+    AlwaysOnAvailabilityGroup.class,
+    SingleDatabaseServer.class,
+    MirroredDatabaseServerGroup.class
+})
+public class DatabaseServerGroup
+    extends AggregateRootEntity
+{
+
+    @XmlElementRef(name = "BackupDirectory", namespace = "http://schemas.datacontract.org/2004/07/Roadnet.Apex.Server.Services.Administration.DataContracts", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> backupDirectory;
+    @XmlElementRef(name = "Description", namespace = "http://schemas.datacontract.org/2004/07/Roadnet.Apex.Server.Services.Administration.DataContracts", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> description;
+    @XmlElementRef(name = "Identifier", namespace = "http://schemas.datacontract.org/2004/07/Roadnet.Apex.Server.Services.Administration.DataContracts", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> identifier;
+    @XmlElementRef(name = "ServerGroupType_Type", namespace = "http://schemas.datacontract.org/2004/07/Roadnet.Apex.Server.Services.Administration.DataContracts", type = JAXBElement.class, required = false)
+    protected JAXBElement<String> serverGroupTypeType;
+
+    /**
+     * Obtém o valor da propriedade backupDirectory.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getBackupDirectory() {
+        return backupDirectory;
+    }
+
+    /**
+     * Define o valor da propriedade backupDirectory.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setBackupDirectory(JAXBElement<String> value) {
+        this.backupDirectory = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade description.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getDescription() {
+        return description;
+    }
+
+    /**
+     * Define o valor da propriedade description.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setDescription(JAXBElement<String> value) {
+        this.description = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade identifier.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getIdentifier() {
+        return identifier;
+    }
+
+    /**
+     * Define o valor da propriedade identifier.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setIdentifier(JAXBElement<String> value) {
+        this.identifier = value;
+    }
+
+    /**
+     * Obtém o valor da propriedade serverGroupTypeType.
+     * 
+     * @return
+     *     possible object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public JAXBElement<String> getServerGroupTypeType() {
+        return serverGroupTypeType;
+    }
+
+    /**
+     * Define o valor da propriedade serverGroupTypeType.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
+     *     
+     */
+    public void setServerGroupTypeType(JAXBElement<String> value) {
+        this.serverGroupTypeType = value;
+    }
+
+}
