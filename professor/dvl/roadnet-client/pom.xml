@@ -44,48 +44,48 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.jvnet.jaxb2.maven2</groupId>
-				<artifactId>maven-jaxb2-plugin</artifactId>
-				<version>0.14.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<generatePackage>com.devglan.springbootsoapclient.generated.blz</generatePackage>
-					<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
-					<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory>
-					<schemaIncludes>
-						<include>*.wsdl</include>
-					</schemaIncludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-codegen-plugin</artifactId>
-				<version>3.2.4</version>
-				<executions>
-					<execution>
-						<id>generate-sources</id>
-						<phase>generate-sources</phase>
-						<configuration>
-							<sourceRoot>${basedir}/src/main/java</sourceRoot>
-							<wsdlOptions>
-								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/wsdl/apex.wsdl</wsdl>
-								</wsdlOption>
-							</wsdlOptions>
-						</configuration>
-						<goals>
-							<goal>wsdl2java</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.jvnet.jaxb2.maven2</groupId> -->
+<!-- 				<artifactId>maven-jaxb2-plugin</artifactId> -->
+<!-- 				<version>0.14.0</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<goals> -->
+<!-- 							<goal>generate</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 				<configuration> -->
+<!-- 					<generatePackage>com.devglan.springbootsoapclient.generated.blz</generatePackage> -->
+<!-- 					<generateDirectory>${project.basedir}/src/main/java</generateDirectory> -->
+<!-- 					<schemaDirectory>${project.basedir}/src/main/resources/wsdl</schemaDirectory> -->
+<!-- 					<schemaIncludes> -->
+<!-- 						<include>*.wsdl</include> -->
+<!-- 					</schemaIncludes> -->
+<!-- 				</configuration> -->
+<!-- 			</plugin> -->
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.cxf</groupId> -->
+<!-- 				<artifactId>cxf-codegen-plugin</artifactId> -->
+<!-- 				<version>3.2.4</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>generate-sources</id> -->
+<!-- 						<phase>generate-sources</phase> -->
+<!-- 						<configuration> -->
+<!-- 							<sourceRoot>${basedir}/src/main/java</sourceRoot> -->
+<!-- 							<wsdlOptions> -->
+<!-- 								<wsdlOption> -->
+<!-- 									<wsdl>${basedir}/src/main/resources/wsdl/apex.wsdl</wsdl> -->
+<!-- 								</wsdlOption> -->
+<!-- 							</wsdlOptions> -->
+<!-- 						</configuration> -->
+<!-- 						<goals> -->
+<!-- 							<goal>wsdl2java</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
